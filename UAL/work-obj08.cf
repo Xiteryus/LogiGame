@@ -1,0 +1,4 @@
+v 4
+file . ".\VALCORE_ARCH.vhd" "22959aa687dda761712b078bafe300654266e268" "20250416145614.202":
+  entity valcore at 1( 0) + 0 on 11;
+  architecture valcore_arch of valcore at 21( 563) + 0 on 12;
