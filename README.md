@@ -14,9 +14,26 @@ ghdl -e -fexplicit --ieee=synopsys --std=08 VALCORE
 ghdl -r -fexplicit --ieee=synopsys --std=08 VALCORE
 ```
 
-### 2. Memory Unit
+### 2. INTERCONNECTION 
+
 ```
-ghdl -a -g -fsynopsys --std=08 .\MEM_CONTROL.vhd
-ghdl -e -fexplicit --ieee=synopsys --std=08 MEM_CONTROL
-ghdl -r -fexplicit --ieee=synopsys --std=08 MEM_CONTROL
+ghdl -a -g -fsynopsys --std=08 .\interconnection.vhd
+ghdl -e -fexplicit --ieee=synopsys --std=08 interco
+ghdl -r -fexplicit --ieee=synopsys --std=08 interco
+
+```
+
+### 3. MEMORY UNIT 
+
+BUFFER A : 
+```
+ghdl -a -g -fsynopsys --std=08 .\BUFFER_A.vhd
+ghdl -e -fexplicit --ieee=synopsys --std=08 BUFFER_A
+ghdl -r -fexplicit --ieee=synopsys --std=08 BUFFER_A
+```
+BUFFER B : 
+```
+ghdl -a -g -fsynopsys --std=08 .\BUFFER_B.vhd
+ghdl -e -fexplicit --ieee=synopsys --std=08 BUFFER_B
+ghdl -r -fexplicit --ieee=synopsys --std=08 BUFFER_B
 ```
