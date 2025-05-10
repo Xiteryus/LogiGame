@@ -21,10 +21,12 @@ end VALCORE;
 architecture VALCORE_ARCH of VALCORE is
 begin
     process (A, B, SEL_fct, SR_IN_L, SR_IN_R)
-        variable svar : unsigned (7 downto 0);
+        variable svar : unsigned (7 downto 0);        
         variable avar : unsigned (7 downto 0);
         variable bvar : unsigned (7 downto 0);
         variable cvar : unsigned (7 downto 0);
+        variable mult_tmp : unsigned(15 downto 0);
+
     begin
         case SEL_fct is
             when "0000" => -- NOP
@@ -134,15 +136,13 @@ begin
                 SR_OUT_L <= '0';
                 SR_OUT_R <= '0';
 
-            when "1111" => -- A * B
-                avar := (others => A(N-1));
-                bvar := (others => B(N-1));
-                avar(N-1 downto 0) := unsigned(A);
-                bvar(N-1 downto 0) := unsigned(B);
-                svar := avar * bvar;
+                when "1111" => -- A * B
+                mult_tmp := resize(unsigned(A), 8) * resize(unsigned(B), 8);
+                svar := mult_tmp(7 downto 0); 
                 S <= std_logic_vector(svar);
                 SR_OUT_L <= '0';
                 SR_OUT_R <= '0';
+            
 
             when others =>
                 S <= (others => '0');
