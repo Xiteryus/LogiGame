@@ -1,70 +1,60 @@
-# LogiGame
+# LogiGame - Microcontrôleur en VHDL avec Jeu Interactif
 
-# Projet Microcontrôleur Simple en VHDL
-Ce projet consiste à concevoir un cœur de microcontrôleur simple en VHDL, puis à le tester sur une carte de développement ARTY intégrant un FPGA Artix-35T de Xilinx. Une fois le cœur de microcontrôleur fonctionnel, il sera utilisé pour exécuter un jeu interactif. De plus, des blocs fonctionnels complémentaires seront créés en VHDL pour permettre au jeu de fonctionner correctement sur le FPGA.
+## Description du Projet
+Ce projet consiste à concevoir un cœur de microcontrôleur simple en VHDL, puis à le tester sur une carte de développement ARTY intégrant un FPGA Artix-35T de Xilinx. Une fois le cœur de microcontrôleur fonctionnel, il sera utilisé pour exécuter un jeu interactif. Des blocs fonctionnels complémentaires seront créés en VHDL pour permettre au jeu de fonctionner correctement sur le FPGA.
 
----
+## Architecture du Microcontrôleur
 
-## Installation et Lancement
+### Coeur de controlleur
+1. **Top Level** 
+2. **Unité Arithmétique et Logique (UAL)**
+   - UAL 
+   - UAL Sel_Out
+   - UAL Sel_Route
+3. **Buffers**
+   - CMD Buffers
+   - UAL Buffers
+4. **Mémoire d'Instructions**
+    - Memory Instruction
 
-### 1. UAL 
-- File VALCORE_ARCH 
-```
-ghdl -a -g -fsynopsys --std=08 .\VALCORE_ARCH.vhd
-ghdl -e -fexplicit --ieee=synopsys --std=08 VALCORE
-ghdl -r -fexplicit --ieee=synopsys --std=08 VALCORE
-```
-- File TBvalcore_arch.vhd (TestBench)
-```
-ghdl -a --std=08 VALCORE_ARCH.vhd
-ghdl -a --std=08 TBvalcore_arch.vhd
+### Résultats de Simulation
+- **UAL**  
+  ![Waveform UAL](image-1.png)
+  
+- **LSFR** (Générateur de Séquence Pseudo-Aléatoire) 
+  ![Waveform lsfr](Image_testlsfr.png)
+
+## Module de Jeu
+
+### Générateur de Séquence Pseudo-Aléatoire
+Implémentation d'un LFSR (Linear Feedback Shift Register) de 4 bits pour générer des séquences aléatoires.
+
+### Génération d’un minuteur programmable permettant de gérer la difficulté du jeu 
+A FINIR
+
+### Génération d’un compteur de score pour le jeu
+PAS FAIT
+
+### Génération d’un vérificateur de résultat pour le jeu
+PAS FAIT
+
+### Synthèse du contrôleur de jeu
+PAS FAIT
+## Lancement des simulations
+ - UAL 
+````bash 
+cd .\UAL\
+ghdl -a --std=08 .\ual.vhd .\TBual.vhd
 ghdl -e --std=08 tb_valcore
-ghdl -r --std=08 tb_valcore --wave=TBvalcore.ghw
-```
-- GTK wave : 
-![alt text](image-1.png)
-
-### 2. INTERCONNECTION 
-- File Interconnection.vhd
-```
-ghdl -a -g -fsynopsys --std=08 .\interconnection.vhd
-ghdl -e -fexplicit --ieee=synopsys --std=08 interco
-ghdl -r -fexplicit --ieee=synopsys --std=08 interco
-```
-- File TBinterconnection.vhd (TestBench)
-```
-ghdl -a --std=08 .\TBinterconnection.vhd
-ghdl -a --std=08 .\interconnection.vhd  
-ghdl -e --std=08 tb_interco     
-ghdl -r --std=08 tb_interco  --wave=TBinterco.ghw 
-```
-- GTK wave : 
-![alt text](image.png)
-
-### 3. MEMORY UNIT 
-
-BUFFER A : 
-```
-ghdl -a -g -fsynopsys --std=08 .\BUFFER_A.vhd
-ghdl -e -fexplicit --ieee=synopsys --std=08 BUFFER_A
-ghdl -r -fexplicit --ieee=synopsys --std=08 BUFFER_A
-```
-BUFFER B : 
-```
-ghdl -a -g -fsynopsys --std=08 .\BUFFER_B.vhd
-ghdl -e -fexplicit --ieee=synopsys --std=08 BUFFER_B
-ghdl -r -fexplicit --ieee=synopsys --std=08 BUFFER_B
+ghdl -r --std=08 tb_valcore --wave=TBual.ghw
+````
+ - Generateur Aléatoire 
+```BASH
+cd .\Générateur_Aléatoire\
+ghdl -a --std=08 .\lsfr4bits.vhd .\TBlsfr4bits.vhd
+ghdl -e --std=08 TBlsfr4bits
+ghdl -r --std=08 TBlsfr4bits --wave=TBlsfr4bits.ghw
 ```
 
-## Fonctionalités
 
-### Coeur de controleur 
-- Top Level
-- UAL
-- CMD Buffers
-- UAL Buffers
-- UAL Sel_Out
-- UAL Sel_Route
-- Memory Instruction
 
-### Logigame 

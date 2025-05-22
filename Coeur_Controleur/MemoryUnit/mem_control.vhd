@@ -28,5 +28,5 @@ begin
     INSTR_memory(2) <= "0000000010";
     INSTR_memory(3) <= "0000000011";
     INSTR_memory(4) <= "0000000100";
-
+    -- ... 127 ? 
 end Behavioral;
