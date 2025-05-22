@@ -1,32 +1,30 @@
-library ieee;
+library IEEE;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity interco is
+
+entity ual_selroute is
     port (
         SEL_ROUTE      : in  std_logic_vector(3 downto 0);
-        SEL_OUT        : in  std_logic_vector(1 downto 0);
         A_IN           : in  std_logic_vector(3 downto 0);
         B_IN           : in  std_logic_vector(3 downto 0);
         S              : in  std_logic_vector(7 downto 0);
-        MEM_CACHE_1_IN  : in  std_logic_vector(7 downto 0);
-        MEM_CACHE_2_IN  : in  std_logic_vector(7 downto 0);
-        -- 
+        MEM_CACHE_1_IN : in  std_logic_vector(7 downto 0);
+        MEM_CACHE_2_IN : in  std_logic_vector(7 downto 0);
+
         Buffer_A       : out std_logic_vector(3 downto 0);
         Buffer_B       : out std_logic_vector(3 downto 0);
-        MEM_CACHE_1_OUT  : out std_logic_vector(7 downto 0);
-        MEM_CACHE_2_OUT  : out std_logic_vector(7 downto 0);
+        MEM_CACHE_1_OUT : out std_logic_vector(7 downto 0);
+        MEM_CACHE_2_OUT : out std_logic_vector(7 downto 0);
 
-        -- Enable 
         EN_Buffer_A    : out std_logic;
         EN_Buffer_B    : out std_logic;
         EN_MEM_CACHE_1 : out std_logic;
-        EN_MEM_CACHE_2 : out std_logic;
-        RES_OUT        : out std_logic_vector(7 downto 0)
+        EN_MEM_CACHE_2 : out std_logic
     );
-end entity;
+end ual_selroute;
 
-architecture rtl of interco is
+architecture ual_sel_route of ual_selroute is
 begin
 
     -- Processus de routage des données
@@ -118,22 +116,4 @@ begin
                 null;
         end case;
     end process;
-
-    -- Processus de sélection de la sortie
-    process2: process (SEL_OUT, RES_OUT, MEM_CACHE_1_IN, MEM_CACHE_2_IN, S)
-    begin
-        case SEL_OUT is
-            when "00" =>
-                RES_OUT <= "00000000";  -- Zero output
-            when "01" =>
-                RES_OUT <= MEM_CACHE_1_IN;
-            when "10" =>
-                RES_OUT <= MEM_CACHE_2_IN;
-            when "11" =>
-                RES_OUT <= S;
-            when others =>
-                NULL;
-        end case;
-    end process;
-
-end architecture;
+end ual_sel_route;

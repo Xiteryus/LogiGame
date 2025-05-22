@@ -55,3 +55,16 @@ ghdl -a -g -fsynopsys --std=08 .\BUFFER_B.vhd
 ghdl -e -fexplicit --ieee=synopsys --std=08 BUFFER_B
 ghdl -r -fexplicit --ieee=synopsys --std=08 BUFFER_B
 ```
+
+## Fonctionalités
+
+### Coeur de controleur 
+- Top Level
+- UAL
+- CMD Buffers
+- UAL Buffers
+- UAL Sel_Out
+- UAL Sel_Route
+- Memory Instruction
+
+### Logigame 

@@ -4,25 +4,29 @@ use ieee.numeric_std.all;
 
 entity mem_control is
     port (
-        clk : std_logic;
-        SEL_ROUTE : in std_logic_vector(3 downto 0);
-        SEL_OUT : in std_logic_vector(1 downto 0);
-        A_IN : in std_logic_vector(3 downto 0); 
-        B_IN : in std_logic_vector(3 downto 0);
-        S : in std_logic_vector(7 downto 0);
-        mem_instruction : in std_logic_vector(6 downto 0);
-        Buffer_A : in std_logic_vector(3 downto 0);
-        Buffer_B : in std_logic_vector(3 downto 0);
-        S_out : out std_logic_vector(7 downto 0)
+        clk : in std_logic;
+        reset : in std_logic;
+
+        INST_in : in std_logic_vector(9 downto 0);
+        INST_out : out std_logic_vector(9 downto 0);
+        INST_addr: in std_logic_vector(3 downto 0);
+        INST_CE: in std_logic;
     );
 
 end mem_control;
 
 architecture Behavioral of mem_control is
-
+    type data_memory_type is array (0 to 127) of std_logic_vector(9 downto 0);
+    signal INSTR_memory : data_memory;
 
 begin
 
+    INSTR_out <= INSTR_memory(to_integer(unsigned(INST_addr))) when falling_edge(clk) and INST_CE = '1' else (others => '0');
 
+    INSTR_memory(0) <= "0000000000";
+    INSTR_memory(1) <= "0000000001";
+    INSTR_memory(2) <= "0000000010";
+    INSTR_memory(3) <= "0000000011";
+    INSTR_memory(4) <= "0000000100";
 
 end Behavioral;
