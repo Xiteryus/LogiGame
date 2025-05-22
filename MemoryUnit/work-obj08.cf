@@ -1,0 +1,4 @@
+v 4
+file . ".\mem_control.vhd" "14b1e9d82e0f49056c7bc5d92d67c03fd100c6ce" "20250522100712.787":
+  entity mem_control at 1( 0) + 0 on 11;
+  architecture behavioral of mem_control at 21( 632) + 0 on 12;

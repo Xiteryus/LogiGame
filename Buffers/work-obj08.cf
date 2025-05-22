@@ -1,0 +1,4 @@
+v 4
+file . ".\buffer_Nbits.vhd" "450dce6fe787d389f48cae2423d25af24626b0b5" "20250522101010.268":
+  entity buffer_nbits at 2( 26) + 0 on 11;
+  architecture buffernbits_arch of buffer_nbits at 18( 342) + 0 on 12;
