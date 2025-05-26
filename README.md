@@ -60,7 +60,6 @@ ghdl -r --std=08 tb_valcore --wave=TBual.ghw
    -  Buffer_cmd ```ghdl -a --std=08 C:[chemin vers le repertoire] LogiGame\Coeur_Controleur\Buffers\buffer_cmd.vhd```
    -  Buffer_cmd ```ghdl -a --std=08 C:[chemin vers le repertoire] LogiGame\Coeur_Controleur\Buffers\buffer_ual.vhd```
    -  Mem_control ```ghdl -a --std=08 C:[chemin vers le repertoire] LogiGame\Coeur_Controleur\MemoryUnit\mem_control.vhd```
-   - 
 ```BASH
 cd .\Coeur_Controleur\Top_Level\
 ghdl -a --std=08 .\Top_level.vhd .\tb_top_level.vhd
