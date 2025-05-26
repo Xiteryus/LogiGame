@@ -52,6 +52,22 @@ ghdl -a --std=08 .\ual.vhd .\TBual.vhd
 ghdl -e --std=08 tb_valcore
 ghdl -r --std=08 tb_valcore --wave=TBual.ghw
 ````
+ - Top_level
+ - Penser d'abord à charger les fichiers suivants dans le répertoire Top_Level :
+   -  Ual ```ghdl -a --std=08 C:[chemin vers le repertoire] LogiGame\Coeur_Controleur\UAL\ual.vhd```
+   -  Ual_selout  ```ghdl -a --std=08 C:[chemin vers le repertoire] LogiGame\Coeur_Controleur\UAL\ual_selout.vhd```
+   -  Ual_selroute  ```ghdl -a --std=08 C:[chemin vers le repertoire] LogiGame\Coeur_Controleur\UAL\ual_selroute.vhd```
+   -  Buffer_cmd ```ghdl -a --std=08 C:[chemin vers le repertoire] LogiGame\Coeur_Controleur\Buffers\buffer_cmd.vhd```
+   -  Buffer_cmd ```ghdl -a --std=08 C:[chemin vers le repertoire] LogiGame\Coeur_Controleur\Buffers\buffer_ual.vhd```
+   -  Mem_control ```ghdl -a --std=08 C:[chemin vers le repertoire] LogiGame\Coeur_Controleur\MemoryUnit\mem_control.vhd```
+   - 
+```BASH
+cd .\Coeur_Controleur\Top_Level\
+ghdl -a --std=08 .\Top_level.vhd .\tb_top_level.vhd
+ghdl -e --std=08 tb_Top_level
+ghdl -r --std=08 tb_Top_level --wave=tb_Top_level.ghw
+```
+---
  - Generateur Aléatoire 
 ```BASH
 cd .\Générateur_Aléatoire\
