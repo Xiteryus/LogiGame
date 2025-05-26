@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity VALCORE is
+entity ual is
     generic (
         N : integer := 4
     );
@@ -16,9 +16,9 @@ entity VALCORE is
         SR_OUT_L : out std_logic;
         SR_OUT_R : out std_logic
     );
-end VALCORE;
+end ual;
 
-architecture VALCORE_ARCH of VALCORE is
+architecture VALCORE_ARCH of ual is
 begin
     process (A, B, SEL_fct, SR_IN_L, SR_IN_R)
         variable svar : unsigned (7 downto 0);        

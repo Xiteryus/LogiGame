@@ -39,6 +39,10 @@ PAS FAIT
 PAS FAIT
 
 ### Synthèse du contrôleur de jeu
+
+### Top level
+lien entre le contrôleur logique et la carte FPGA physique.
+
 PAS FAIT
 ## Lancement des simulations
  - UAL 
@@ -55,6 +59,24 @@ ghdl -a --std=08 .\lsfr4bits.vhd .\TBlsfr4bits.vhd
 ghdl -e --std=08 TBlsfr4bits
 ghdl -r --std=08 TBlsfr4bits --wave=TBlsfr4bits.ghw
 ```
-
-
-
+ - Compteur
+```BASH
+cd .\Logique_de_jeu\Compteur\
+ghdl -a --std=08 .\compteur.vhd .\TBcompteur.vhd
+ghdl -e --std=08 tb_compteur
+ghdl -r --std=08 tb_compteur --wave=TBcompteur.ghw
+```
+ - Minuteur
+```BASH
+cd .\Logique_de_jeu\Minuteur_difficulte
+ghdl -a --std=08 .\minuteur.vhd .\TBminuteur.vhd
+ghdl -e --std=08 tb_minuteur
+ghdl -r --std=08 tb_minuteur --wave=TBminuteur.ghw
+```
+ - Verification du resultat
+```BASH
+cd .\Logique_de_jeu\Verificateur_Resultat\
+ghdl -a --std=08 .\verificateur.vhd .\TBverificateur.vhd
+ghdl -e --std=08 tb_verificateur
+ghdl -r --std=08 tb_verificateur --wave=verificateur.ghw
+```

@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity bufferUAL is
+entity buffer_ual is
     Port (
         clk                : in  std_logic;
         reset              : in  std_logic;
@@ -14,9 +14,9 @@ entity bufferUAL is
         buffer_A_out   : out std_logic_vector(3 downto 0);
         buffer_B_out   : out std_logic_vector(3 downto 0)
     );
-end bufferUAL;
+end buffer_ual;
 
-architecture bufferUAL_Arch of bufferUAL is
+architecture bufferUAL_Arch of buffer_ual is
     begin
         -- Buffer A
         BufferA : process(clk, reset)
