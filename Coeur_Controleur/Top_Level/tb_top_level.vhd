@@ -8,7 +8,6 @@ entity tb_Top_level is
 end tb_Top_level;
 
 architecture Behavioral of tb_Top_level is
-    -- Composant à tester
     component Top_level
         Port (
             CLK100MHZ : in STD_LOGIC;
@@ -22,7 +21,6 @@ architecture Behavioral of tb_Top_level is
         );
     end component;
 
-    -- Signaux du testbench
     signal CLK100MHZ : std_logic := '0';
     signal sw : std_logic_vector(3 downto 0) := "0000";
     signal btn : std_logic_vector(3 downto 0) := "0000";
@@ -34,7 +32,6 @@ architecture Behavioral of tb_Top_level is
 
 begin
 
-    -- Instanciation du DUT
     DUT: Top_level port map (
         CLK100MHZ => CLK100MHZ,
         sw => sw,
@@ -46,7 +43,7 @@ begin
         led3_r => led3_r, led3_g => led3_g, led3_b => led3_b
     );
 
-    -- Génération de l'horloge 100 MHz
+    -- Horloge
     CLK_process : process
     begin
         CLK100MHZ <= '0';
@@ -55,27 +52,40 @@ begin
         wait for 5 ns;
     end process;
 
-    -- Stimulus
-    stim_proc: process
-    begin
-        -- Reset
-        btn(0) <= '1'; wait for 20 ns;
-        btn(0) <= '0'; wait for 20 ns;
+stim_proc: process
+begin
+    -- Reset
+    btn(0) <= '1'; wait for 20 ns;
+    btn(0) <= '0'; wait for 20 ns;
 
-        -- Test fonction 1 (btn(1))
-        btn(1) <= '1'; sw <= "1010"; wait for 200 ns;
-        btn(1) <= '0'; wait for 200 ns;
+    -- Test fonction 1
+    btn <= "0001"; sw <= "0010"; wait for 500 ns;
+    btn <= "0000"; wait for 100 ns;
+    wait for 1 us;
+    report "=== TEST 1 ===" severity note;
+    report "A=" & integer'image(to_integer(unsigned(sw))) severity note;
+    report "B=" & integer'image(to_integer(unsigned(sw))) severity note;
+    report "Resultat (led)=" & integer'image(to_integer(unsigned(led))) severity note;
 
-        -- Test fonction 2 (btn(2))
-        btn(2) <= '1'; sw <= "0101"; wait for 500 ns;
-        btn(2) <= '0'; wait for 500 ns;
+    -- Test fonction 2
+    btn <= "0010"; sw <= "0100"; wait for 1000 ns;
+    btn <= "0000"; wait for 100 ns;
+    report "=== TEST 2 ===" severity note;
+    report "A=" & integer'image(to_integer(unsigned(sw))) severity note;
+    report "B=" & integer'image(to_integer(unsigned(sw))) severity note;
+    report "Resultat (led)=" & integer'image(to_integer(unsigned(led))) severity note;
 
-        -- Test fonction 3 (btn(3))
-        btn(3) <= '1'; sw <= "1111"; wait for 1000 ns;
-        btn(3) <= '0'; wait for 1000 ns;
+    -- Test fonction 3
+    btn <= "0011"; sw <= "0100"; wait for 2000 ns;
+    btn <= "0000"; wait for 100 ns;
+    report "=== TEST 3 ===" severity note;
+    report "A=" & integer'image(to_integer(unsigned(sw))) severity note;
+    report "B=" & integer'image(to_integer(unsigned(sw))) severity note;
+    report "Resultat (led)=" & integer'image(to_integer(unsigned(led))) severity note;
 
-        -- Fin de la simulation
-        std.env.stop;
-    end process;
+    std.env.stop;
+end process;
+
+
 
 end Behavioral;

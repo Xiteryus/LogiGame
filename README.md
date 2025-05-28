@@ -7,6 +7,7 @@ Ce projet consiste à concevoir un cœur de microcontrôleur simple en VHDL, pui
 
 ### Coeur de controlleur
 1. **Top Level** 
+    - Top Level
 2. **Unité Arithmétique et Logique (UAL)**
    - UAL 
    - UAL Sel_Out
@@ -17,33 +18,22 @@ Ce projet consiste à concevoir un cœur de microcontrôleur simple en VHDL, pui
 4. **Mémoire d'Instructions**
     - Memory Instruction
 
-### Résultats de Simulation
-- **UAL**  
-  ![Waveform UAL](image-1.png)
-  
-- **LSFR** (Générateur de Séquence Pseudo-Aléatoire) 
-  ![Waveform lsfr](Image_testlsfr.png)
-
 ## Module de Jeu
 
-### Générateur de Séquence Pseudo-Aléatoire
-Implémentation d'un LFSR (Linear Feedback Shift Register) de 4 bits pour générer des séquences aléatoires.
+1. **Générateur de Séquence Pseudo-Aléatoire**
+    - Implémentation d'un LFSR (Linear Feedback Shift Register) de 4 bits pour générer des séquences aléatoires.
 
-### Génération d’un minuteur programmable permettant de gérer la difficulté du jeu 
-A FINIR
+2. **Génération d’un minuteur programmable permettant de gérer la difficulté du jeu** 
 
-### Génération d’un compteur de score pour le jeu
-PAS FAIT
+3. **Génération d’un compteur de score pour le jeu**
 
-### Génération d’un vérificateur de résultat pour le jeu
-PAS FAIT
 
-### Synthèse du contrôleur de jeu
+4.  **Génération d’un vérificateur de résultat pour le jeu**
 
-### Top level
-lien entre le contrôleur logique et la carte FPGA physique.
+5. **Synthèse du contrôleur de jeu**
 
-PAS FAIT
+6. **Top level**
+
 ## Lancement des simulations
  - UAL 
 ````bash 
@@ -52,6 +42,27 @@ ghdl -a --std=08 .\ual.vhd .\TBual.vhd
 ghdl -e --std=08 tb_valcore
 ghdl -r --std=08 tb_valcore --wave=TBual.ghw
 ````
+ - Ual_selout
+```BASH
+cd .\Coeur_Controleur\UAL\
+ghdl -a --std=08 .\ual_selout.vhd .\TBual_selout.vhd
+ghdl -e --std=08 tb_ual_selout
+ghdl -r --std=08 tb_ual_selout --wave=TBual_selout.ghw
+```
+ - Ual_selroute
+```BASH
+cd .\Coeur_Controleur\UAL\
+ghdl -a --std=08 .\ual_selroute.vhd .\TBual_selroute.vhd
+ghdl -e --std=08 tb_ual_seroute
+ghdl -r --std=08 tb_ual_selroutr --wave=TBual_selroute.ghw
+```
+ - Memory Instruction 
+```BASH 
+cd .\Coeur_Controleur\MemoryUnit\
+ghdl -a --std=08 .\mem_control.vhd .\TBmem_control.vhd
+ghdl -e --std=08 tb_mem_control
+ghdl -r --std=08 tb_mem_control --wave=TB_mem_control.ghw
+```
  - Top_level
  - Penser d'abord à charger les fichiers suivants dans le répertoire Top_Level :
    -  Ual ```ghdl -a --std=08 C:[chemin vers le repertoire] LogiGame\Coeur_Controleur\UAL\ual.vhd```
