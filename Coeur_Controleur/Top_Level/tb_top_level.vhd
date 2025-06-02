@@ -3,7 +3,6 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use std.env.all;
 
-
 entity tb_Top_level is
 end tb_Top_level;
 
@@ -30,6 +29,20 @@ architecture Behavioral of tb_Top_level is
     signal led2_r, led2_g, led2_b : std_logic;
     signal led3_r, led3_g, led3_b : std_logic;
 
+    -- Correction de la fonction de conversion en string
+    function to_bstring(slv: std_logic_vector) return string is
+        variable result: string(1 to slv'length);
+    begin
+        for i in slv'range loop
+            if slv(i) = '1' then
+                result(i - slv'low + 1) := '1';
+            else
+                result(i - slv'low + 1) := '0';
+            end if;
+        end loop;
+        return result;
+    end;
+
 begin
 
     DUT: Top_level port map (
@@ -52,6 +65,7 @@ begin
         wait for 5 ns;
     end process;
 
+    -- Stimulus
 stim_proc: process
 begin
     -- Reset
@@ -60,32 +74,35 @@ begin
 
     -- Test fonction 1
     btn <= "0001"; sw <= "0010"; wait for 500 ns;
+    report "=== TEST 1 ===" severity note;
+    report "Boutons = " & to_bstring(btn) & " (binaire)" severity note;
+    report "A = " & integer'image(to_integer(unsigned(sw))) severity note;
+    report "B = " & integer'image(to_integer(unsigned(sw))) severity note;
+    report "Resultat (led) = " & integer'image(to_integer(unsigned(led))) severity note;
     btn <= "0000"; wait for 100 ns;
     wait for 1 us;
-    report "=== TEST 1 ===" severity note;
-    report "A=" & integer'image(to_integer(unsigned(sw))) severity note;
-    report "B=" & integer'image(to_integer(unsigned(sw))) severity note;
-    report "Resultat (led)=" & integer'image(to_integer(unsigned(led))) severity note;
 
     -- Test fonction 2
     btn <= "0010"; sw <= "0100"; wait for 1000 ns;
-    btn <= "0000"; wait for 100 ns;
     report "=== TEST 2 ===" severity note;
-    report "A=" & integer'image(to_integer(unsigned(sw))) severity note;
-    report "B=" & integer'image(to_integer(unsigned(sw))) severity note;
-    report "Resultat (led)=" & integer'image(to_integer(unsigned(led))) severity note;
+    report "Boutons = " & to_bstring(btn) & " (binaire)" severity note;
+    report "A = " & integer'image(to_integer(unsigned(sw))) severity note;
+    report "B = " & integer'image(to_integer(unsigned(sw))) severity note;
+    report "Resultat (led) = " & integer'image(to_integer(unsigned(led))) severity note;
+    btn <= "0000"; wait for 100 ns;
 
     -- Test fonction 3
     btn <= "0011"; sw <= "0100"; wait for 2000 ns;
-    btn <= "0000"; wait for 100 ns;
     report "=== TEST 3 ===" severity note;
-    report "A=" & integer'image(to_integer(unsigned(sw))) severity note;
-    report "B=" & integer'image(to_integer(unsigned(sw))) severity note;
-    report "Resultat (led)=" & integer'image(to_integer(unsigned(led))) severity note;
+    report "Boutons = " & to_bstring(btn) & " (binaire)" severity note;
+    report "A = " & integer'image(to_integer(unsigned(sw))) severity note;
+    report "B = " & integer'image(to_integer(unsigned(sw))) severity note;
+    report "Resultat (led) = " & integer'image(to_integer(unsigned(led))) severity note;
+    btn <= "0000"; wait for 100 ns;
 
+    -- Fin de simulation
     std.env.stop;
 end process;
-
 
 
 end Behavioral;
