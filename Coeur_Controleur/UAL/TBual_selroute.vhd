@@ -33,7 +33,8 @@ architecture testbench of tb_ual_selroute is
     signal EN_Buffer_A, EN_Buffer_B,EN_MEM_CACHE_1,EN_MEM_CACHE_2             : std_logic;
 
 begin
-    uut: ual_selroute
+    -- Laison 
+    selroute: ual_selroute
         port map (
             SEL_ROUTE       => SEL_ROUTE,
             A_IN            => A_IN,
@@ -53,13 +54,13 @@ begin
 
     process
     begin
-        -- Valeurs de base pour S, MEM1 et MEM2 
+        -- initialisation des valeurs pour A, B S, MEM1 et MEM2 
         A_in <= "0001";
         B_in <= "0010";
         S <= "10101001";
         MEM_CACHE_1_IN <= "00111100";
         MEM_CACHE_2_IN <= "11010100";
-
+        -- On test toutes les valeurs de sel_route 
         for i in 0 to 15 loop
             SEL_ROUTE <= std_logic_vector(to_unsigned(i, 4));
             wait for 10 ns;

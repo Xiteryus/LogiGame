@@ -23,7 +23,8 @@ architecture testbench of tb_ual_selout is
     signal RES_OUT : std_logic_vector(7 downto 0);
 
 begin
-    uut_ual_selout: ual_selout
+    -- Liason
+    selout: ual_selout
         port map (
             SEL_OUT => SEL_OUT,
             S => S,
@@ -34,7 +35,7 @@ begin
 
     process
     begin
-        -- Valeurs de base pour S, MEM1 et MEM2 
+        -- initialisation des valeurs pour S, MEM1 et MEM2 
         S <= "10101010";               
         MEM_CACHE_1_IN <= "00010001";   
         MEM_CACHE_2_IN <= "00100010";  

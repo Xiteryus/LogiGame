@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity buffer_cmd is
+entity buffer_cmd is -- buffer sur 8 bits 
     Port (
         clk : in std_logic;
         reset : in std_logic;

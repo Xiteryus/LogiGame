@@ -26,8 +26,8 @@ architecture behavior of tb_buffer_ual is
     constant clk_period : time := 10 ns;
 
 begin
-
-    uut: buffer_ual
+    -- Laison
+    buffer: buffer_ual
         port map (
             clk           => clk,
             reset         => reset,
@@ -47,7 +47,6 @@ begin
         end loop;
     end process;
 
-    -- Stimulus process
     stim_proc: process
     begin
         -- Reset
@@ -69,7 +68,7 @@ begin
         wait for clk_period;
 
 
-    std.env.stop;
+    std.env.stop; -- stoper la simulation 
     end process;
 
 end behavior;

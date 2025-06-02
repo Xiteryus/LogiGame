@@ -44,7 +44,7 @@ architecture Behavioral of mem_control is
         others => (others => '0')
     );
 begin
-    process(clk) -- On active la lecture quand INST_CE est à 1 
+    process(clk) -- On active la lecture quand INST_CE est à 1 & front montant 
     begin
         if rising_edge(clk) then
             if INST_CE = '1' then

@@ -21,10 +21,8 @@ begin
             if reset = '1' then
                 lfsr_reg <= "1011"; 
             elsif enable = '1' then
-                -- X^4 + X^3 + 1 => XOR entre bit 3 et bit 0
-                temp := lfsr_reg(3) xor lfsr_reg(0);  
-                -- Décalage à droite
-                lfsr_reg <= temp & lfsr_reg(3 downto 1);  
+                temp := lfsr_reg(3) xor lfsr_reg(0);  -- X^4 + X^3 + 1 => XOR entre bit 3 et bit 0
+                lfsr_reg <= temp & lfsr_reg(3 downto 1); -- Décalage à droite 
             end if;
         end if;
     end process;

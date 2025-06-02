@@ -27,7 +27,6 @@ end ual_selroute;
 architecture ual_sel_route of ual_selroute is
 begin
 
-    -- Processus de routage des données
     process1 :process (SEL_ROUTE, A_IN, B_IN, S, MEM_CACHE_1_IN, MEM_CACHE_2_IN)
     begin
         case SEL_ROUTE is
@@ -36,32 +35,32 @@ begin
                 Buffer_A    <= A_IN;
                 EN_Buffer_A <= '1';
 
-            -- MEM_CACHE_1 (LSB) -> Buffer_A
+            -- MEM_CACHE_1 -> Buffer_A
             when "0001" =>
                 Buffer_A    <= MEM_CACHE_1_IN(3 downto 0);
                 EN_Buffer_A <= '1';
 
-            -- MEM_CACHE_1 (MSB) -> Buffer_A
+            -- MEM_CACHE_1 -> Buffer_A
             when "0010" =>
                 Buffer_A    <= MEM_CACHE_1_IN(7 downto 4);
                 EN_Buffer_A <= '1';
 
-            -- MEM_CACHE_2 (LSB) -> Buffer_A
+            -- MEM_CACHE_2 -> Buffer_A
             when "0011" =>
                 Buffer_A    <= MEM_CACHE_2_IN(3 downto 0);
                 EN_Buffer_A <= '1';
 
-            -- MEM_CACHE_2 (MSB) -> Buffer_A
+            -- MEM_CACHE_2 -> Buffer_A
             when "0100" =>
                 Buffer_A    <= MEM_CACHE_2_IN(7 downto 4);
                 EN_Buffer_A <= '1';
 
-            -- S (LSB) -> Buffer_A
+            -- S -> Buffer_A
             when "0101" =>
                 Buffer_A    <= S(3 downto 0);
                 EN_Buffer_A <= '1';
 
-            -- S (MSB) -> Buffer_A
+            -- S -> Buffer_A
             when "0110" =>
                 Buffer_A    <= S(7 downto 4);
                 EN_Buffer_A <= '1';
@@ -71,32 +70,32 @@ begin
                 Buffer_B    <= B_IN;
                 EN_Buffer_B <= '1';
 
-            -- MEM_CACHE_1 (LSB) -> Buffer_B
+            -- MEM_CACHE_1 -> Buffer_B
             when "1000" =>
                 Buffer_B    <= MEM_CACHE_1_IN(3 downto 0);
                 EN_Buffer_B <= '1';
 
-            -- MEM_CACHE_1 (MSB) -> Buffer_B
+            -- MEM_CACHE_1 -> Buffer_B
             when "1001" =>
                 Buffer_B    <= MEM_CACHE_1_IN(7 downto 4);
                 EN_Buffer_B <= '1';
 
-            -- MEM_CACHE_2 (LSB) -> Buffer_B
+            -- MEM_CACHE_2 -> Buffer_B
             when "1010" =>
                 Buffer_B    <= MEM_CACHE_2_IN(3 downto 0);
                 EN_Buffer_B <= '1';
 
-            -- MEM_CACHE_2 (MSB) -> Buffer_B
+            -- MEM_CACHE_2 -> Buffer_B
             when "1011" =>
                 Buffer_B    <= MEM_CACHE_2_IN(7 downto 4);
                 EN_Buffer_B <= '1';
 
-            -- S (LSB) -> Buffer_B
+            -- S -> Buffer_B
             when "1100" =>
                 Buffer_B    <= S(3 downto 0);
                 EN_Buffer_B <= '1';
 
-            -- S (MSB) -> Buffer_B
+            -- S -> Buffer_B
             when "1101" =>
                 Buffer_B    <= S(7 downto 4);
                 EN_Buffer_B <= '1';

@@ -1,12 +1,12 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity buffer_ual is
+entity buffer_ual is --buffer sur 4 bits 
     Port (
         clk                : in  std_logic;
         reset              : in  std_logic;
         enable_buffer     : in  std_logic;
-        buffer_in : in  std_logic_vector(3 downto 0);
+        buffer_in : in  std_logic_vector(3 downto 0); 
         buffer_out   : out std_logic_vector(3 downto 0)
     );
 end buffer_ual;

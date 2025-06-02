@@ -23,7 +23,7 @@ architecture test of TBlsfr4bits is
     signal enable : std_logic := '0';
     signal rnd    : std_logic_vector(3 downto 0);
 
-    -- Horloge : 100 MHz (10 ns période)
+    -- Horloge
     constant CLK_PERIOD : time := 10 ns;
 
 begin

@@ -31,8 +31,8 @@ architecture sim of tb_valcore is
     signal SR_OUT_L, SR_OUT_R : std_logic;
 
 begin
-
-    uut_valcore: VALCORE
+    -- Laison 
+    ual: VALCORE
         generic map (N => 4)
         port map (
             A => A,
@@ -47,13 +47,13 @@ begin
 
     stim_proc: process
     begin
-        -- Valeurs de base pour A, B, et SR
+        -- initialisation des valeurs pour A, B, et SR
         A <= "1010";
         B <= "0011";
         SR_IN_L <= '1';
         SR_IN_R <= '0';
 
-        -- Boucle sur toutes les fonctions de 0000 à 1111
+        -- On test toutes les valeurs de sel_fct (de 0000 à 1111)
         for i in 0 to 15 loop
             SEL_fct <= std_logic_vector(to_unsigned(i, 4));
             wait for 10 ns;

@@ -28,7 +28,7 @@ architecture Behavioral of tb_mem_control is
 begin
 
     -- Liason 
-    uut: mem_control
+    instruction_control: mem_control
         port map (
             clk       => clk,
             INST_out  => INST_out,
@@ -48,13 +48,12 @@ begin
         wait;
     end process;
 
-    -- Stimuli
     stim_proc: process
     begin
         wait for 15 ns;
         INST_CE <= '1';
 
-        -- 0 à 16
+        -- On affiche toutes les instructions 
         for i in 0 to 16 loop
             INST_addr <= std_logic_vector(to_unsigned(i, 7));
             wait for CLK_PERIOD;

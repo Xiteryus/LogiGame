@@ -76,35 +76,35 @@ begin
                 SR_OUT_L <= '0';
                 SR_OUT_R <= '0';
 
-            when "1000" => -- shift left logical A
+            when "1000" => -- décalage à droite sur A
                 S <= (others => '0');
                 SR_OUT_R <= A(N-1);
                 S(N-1 downto 1) <= A(N-2 downto 0);
                 S(0) <= SR_IN_L;
                 SR_OUT_L <= '0';
 
-            when "1001" => -- shift right logical A
+            when "1001" => -- déclage à gauche sur A
                 S <= (others => '0');
                 SR_OUT_L <= A(0);
                 S(N-2 downto 0) <= A(N-1 downto 1);
                 S(N-1) <= SR_IN_R;
                 SR_OUT_R <= '0';
 
-            when "1010" => -- shift left logical B
+            when "1010" => -- décalage à droite sur B
                 S <= (others => '0');
                 SR_OUT_R <= B(N-1);
                 S(N-1 downto 1) <= B(N-2 downto 0);
                 S(0) <= SR_IN_L;
                 SR_OUT_L <= '0';
 
-            when "1011" => -- shift right logical B
+            when "1011" => -- décalage à gauche sur B
                 S <= (others => '0');
                 SR_OUT_L <= B(0);
                 S(N-2 downto 0) <= B(N-1 downto 1);
                 S(N-1) <= SR_IN_R;
                 SR_OUT_R <= '0';
 
-            when "1100" => -- A + B + carry
+            when "1100" => -- A + B + retenue
                 avar := (others => A(N-1));
                 bvar := (others => B(N-1));
                 avar(N-1 downto 0) := unsigned(A);
@@ -142,9 +142,8 @@ begin
                 S <= std_logic_vector(svar);
                 SR_OUT_L <= '0';
                 SR_OUT_R <= '0';
-            
-
-            when others =>
+             
+            when others => -- rien 
                 S <= (others => '0');
                 SR_OUT_L <= '0';
                 SR_OUT_R <= '0';
