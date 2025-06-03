@@ -23,16 +23,6 @@ Ce projet consiste à concevoir un cœur de microcontrôleur simple en VHDL, pui
 1. **Générateur de Séquence Pseudo-Aléatoire**
     - Implémentation d'un LFSR (Linear Feedback Shift Register) de 4 bits pour générer des séquences aléatoires.
 
-2. **Génération d’un minuteur programmable permettant de gérer la difficulté du jeu** 
-
-3. **Génération d’un compteur de score pour le jeu**
-
-
-4.  **Génération d’un vérificateur de résultat pour le jeu**
-
-5. **Synthèse du contrôleur de jeu**
-
-6. **Top level**
 
 ## Lancement des simulations
  - UAL 
@@ -85,24 +75,4 @@ ghdl -a --std=08 .\lsfr4bits.vhd .\TBlsfr4bits.vhd
 ghdl -e --std=08 TBlsfr4bits
 ghdl -r --std=08 TBlsfr4bits --wave=TBlsfr4bits.ghw
 ```
- - Compteur
-```BASH
-cd .\Logique_de_jeu\Compteur\
-ghdl -a --std=08 .\compteur.vhd .\TBcompteur.vhd
-ghdl -e --std=08 tb_compteur
-ghdl -r --std=08 tb_compteur --wave=TBcompteur.ghw
-```
- - Minuteur
-```BASH
-cd .\Logique_de_jeu\Minuteur_difficulte
-ghdl -a --std=08 .\minuteur.vhd .\TBminuteur.vhd
-ghdl -e --std=08 tb_minuteur
-ghdl -r --std=08 tb_minuteur --wave=TBminuteur.ghw
-```
- - Verification du resultat
-```BASH
-cd .\Logique_de_jeu\Verificateur_Resultat\
-ghdl -a --std=08 .\verificateur.vhd .\TBverificateur.vhd
-ghdl -e --std=08 tb_verificateur
-ghdl -r --std=08 tb_verificateur --wave=verificateur.ghw
-```
+
